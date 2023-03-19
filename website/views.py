@@ -22,6 +22,12 @@ def user(request):
     user_ref = db.reference('users')
     user_name = request.POST['name'].title()
     user_phone = '+91' + request.POST['phone']
+    for user_id in user_ref.get():
+        user = user_ref.child(user_id)
+        phone = user.child("phone").get()
+        if phone == user_phone:
+            ref_code = user.child("referral_code").get()
+            return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
     user_ref_by = request.POST['ref_by']
     if user_ref_by == "":
         user_ref_by = 'null'
