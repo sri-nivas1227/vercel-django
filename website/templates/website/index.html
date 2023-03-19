@@ -1,0 +1,159 @@
+{% load static tailwind_tags %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'website/favicon.ico' %}"
+      type="image/x-icon"
+    />
+    {% tailwind_css %}
+    <title>KalaKumbh</title>
+  </head>
+  <body class="bg-black">
+    <nav class="w-full bg-[#000] flex justify-between items-center px-1 py-4">
+      <h1
+        class="font-bold text-2xl sm:text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-white via-yellow-500 to-zinc-200"
+      >
+        KalaKumbh
+      </h1>
+      <button
+        class="bg-[#313131] rounded-3xl sm:p-2 sm:text-lg mr-4 sm:mr-8 font-semibold text-white text-center px-2"
+      >
+        The team
+      </button>
+    </nav>
+    <main
+      id="hero"
+      class="bg-black text-white p-2 flex flex-col w-full items-center justify-center align-middle"
+    >
+      <p
+        class="text-lg text-white sm:text-2xl md:text-3xl w-full lg:text-4xl my-2 font-semibold text-center"
+      >
+        You're <span class="underline text-yellow-500">never</span> missing an
+        event again!
+      </p>
+      <div
+        class="text-lg sm:text-2xl md:text-3xl lg:text-4xl my-4 p-1 font-bold text-center text-transparent bg-clip-text bg-gradient-to-b from-yellow-500 via-yellow-300 to-yellow-500"
+      >
+        <p>We connect you with</p>
+        <p>Event Managers, Singers, Mentors and more</p>
+      </div>
+
+      <div id="form" class="m-auto w-full">
+        <form
+          action="user"
+          method="post"
+          class="w-2/3 m-auto sm:w-1/2 md:w-1/2 lg:w-1/3"
+        >
+          {% csrf_token %}
+          <div id="name" class="relative my-4 w-full">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <img
+                src="{% static 'website/icons/user.png' %}"
+                alt="icon"
+                class="w-5 h-5"
+              />
+            </div>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Full Name..."
+              class="bg-[#313131] border w-full text-[#e0dede] text-md rounded-3xl pl-10 p-2.5 placeholder-[#858585]"
+              required
+            />
+          </div>
+
+          <div id="phone" class="relative w-full my-4">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <img
+                src="{% static 'website/icons/phone-call-dark.png' %}"
+                alt="icon"
+                class="w-5 h-5"
+              />
+            </div>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              placeholder="Phone Number..."
+              pattern="[0-9]{10}"
+              title="Please enter a valid 10 digit phone number"
+              class="bg-[#313131] border text-[#e0dede] w-full text-md rounded-3xl pl-10 p-2.5 placeholder-[#858585]"
+              required
+            />
+          </div>
+          <div id="phone" class="relative w-full my-4">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <img
+                src="{% static 'website/icons/collaborate.png' %}"
+                alt="icon"
+                class="w-5 h-5"
+              />
+            </div>
+            <input
+              type="text"
+              name="ref_by"
+              id="ref_by"
+              placeholder="Referral Code..."
+              title="Please enter a valid 10 digit phone number"
+              class="bg-[#313131] border text-[#e0dede] w-full text-md rounded-3xl pl-10 p-2.5 placeholder-[#858585]"
+            />
+          </div>
+
+          <button
+            class="text-[#e0dede] w-full p-2 rounded-3xl bg-[#313131] cursor-pointer hover:bg-yellow-300 hover:text-black border border-yellow-400"
+            type="submit"
+          >
+            <div
+              class="flex items-center w-full md:mx-6 text-lg font-semibold justify-between"
+            >
+              <span>Join the Waitlist</span>
+              <img
+                src="{% static 'website/icons/right-dark.png' %}"
+                alt="right"
+                class="w-10 ml-2 -mr-2 md:mr-6"
+              />
+            </div>
+          </button>
+        </form>
+      </div>
+    </main>
+    <footer class="w-full bg-[#000] flex justify-center p-4">
+      <div class="w-2/3 sm:w-1/3 lg:w-1/4 flex justify-around items-center">
+        <a href="https://www.instagram.com/_kalakumbh_/">
+          <img
+            src="{% static 'website/icons/instagram-dark.png' %}"
+            alt="instagram"
+            class="w-8 sm: md: lg: mx-2 h-8 sm: md: lg:"
+          />
+        </a>
+        <a href="https://twitter.com/kalakumbh_">
+          <img
+            src="{% static 'website/icons/twitter-dark.png' %}"
+            alt="twitter"
+            class="w-8 sm: md: lg: mx-2 h-8 sm: md: lg:"
+          />
+        </a>
+        <a href="https://www.linkedin.com/company/kalakumbh/">
+          <img
+            src="{% static 'website/icons/linkedin-logo-dark.png' %}"
+            alt="Linkedin"
+            class="w-8 sm: md: lg: mx-2 h-8 sm: md: lg:"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
