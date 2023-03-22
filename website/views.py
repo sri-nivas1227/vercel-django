@@ -15,7 +15,7 @@ default_app = firebase_admin.initialize_app(cred, {
 
 
 def index(request):
-    return render(request, 'website/index.html')
+    return render(request, 'website/index.html', {'success': False, 'user_exist': False, 'wrong_ref': False, })
 
 
 def user(request):
@@ -32,7 +32,7 @@ def user(request):
             return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
             # return render(request, 'website/index.html', {'show': True})
         ref = user.child('referral_code').get()
-        if ref == user_ref_by:
+        if ref == user_ref_by or user_ref_by == "":
             flag = False
     if flag:
         return HttpResponse("the referral code is invalid")
