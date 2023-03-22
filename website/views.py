@@ -15,7 +15,11 @@ default_app = firebase_admin.initialize_app(cred, {
 
 
 def index(request):
-    return render(request, 'website/index.html', {'success': False, 'user_exist': False, 'wrong_ref': False, })
+    return render(request, 'website/index.html',)
+
+
+def about(request):
+    return render(request, 'website/about.html')
 
 
 def user(request):
@@ -29,13 +33,14 @@ def user(request):
         phone = user.child("phone").get()
         if phone == user_phone:
             ref_code = user.child("referral_code").get()
-            return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
-            # return render(request, 'website/index.html', {'show': True})
+            # return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
+            return render(request, 'website/index.html', {'warning': True})
         ref = user.child('referral_code').get()
         if ref == user_ref_by or user_ref_by == "":
             flag = False
     if flag:
-        return HttpResponse("the referral code is invalid")
+        # return HttpResponse("the referral code is invalid")
+        return render(request, 'website/index.html', {'danger': True})
     if user_ref_by == "":
         user_ref_by = 'null'
     print('referred by', request.POST['ref_by'])
@@ -54,7 +59,7 @@ def user(request):
     )
     update_codes(user_ref_by)
     update_score(user_ref_by)
-    return HttpResponse("Hey " + user_name + " your referral code is " + user_ref_code + " and your You're referred by is " + user_ref_by)
+    return render(request, 'website/index.html', {'success': True, 'ref_code': user_ref_code})
 
 
 def generate_referral_code(length=6):

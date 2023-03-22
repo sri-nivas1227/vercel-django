@@ -15,13 +15,14 @@
     <title>KalaKumbh</title>
   </head>
   <body class="bg-black">
-    <nav class="w-full bg-[#000] flex justify-between items-center px-1 py-4">
+    <nav id="nav" class="w-full flex justify-between items-center px-1 py-4">
       <h1
         class="font-bold text-2xl sm:text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-white via-yellow-500 to-zinc-200"
       >
         KalaKumbh
       </h1>
       <button
+        id="teambtn"
         class="bg-[#313131] rounded-3xl sm:p-2 sm:text-lg mr-4 sm:mr-8 font-semibold text-white text-center px-2"
       >
         The team
@@ -29,7 +30,7 @@
     </nav>
     <main
       id="hero"
-      class="bg-black text-white p-2 flex flex-col w-full items-center justify-center align-middle"
+      class="text-white p-2 flex flex-col w-full items-center justify-center align-middle"
     >
       <p
         class="text-lg text-white sm:text-2xl md:text-3xl w-full lg:text-4xl my-2 font-semibold text-center"
@@ -131,7 +132,7 @@
         </form>
       </div>
     </main>
-    <footer class="w-full bg-[#000] flex justify-center p-4">
+    <footer class="w-full flex justify-center p-4">
       <div
         class="w-2/3 sm:w-1/3 lg:w-1/4 flex sm:justify-around justify-center gap-10 items-center"
       >
@@ -158,5 +159,220 @@
         </a>
       </div>
     </footer>
+
+    {% if success %}
+    <div
+      id="success-modal"
+      class="w-full bg-black bg-opacity-50 h-screen fixed top-0 left-0 justify-center items-center flex"
+    >
+      <div class="">
+        <div class="m-auto bg-[#313131] rounded-3xl p-4 mx-4">
+          <div class="flex justify-end">
+            <a href="/">
+              <img
+                src="{% static 'website/icons/close.png' %}"
+                alt="close"
+                class="w-2 h-2 cursor-pointer"
+              />
+            </a>
+          </div>
+          <div class="text-center">
+            <img
+              src="{% static 'website/icons/check-mark.png' %}"
+              alt="check"
+              class="w-16 h-16 mx-auto"
+            />
+            <p class="text-white text-2xl font-semibold mt-4">
+              You're added to the waitlist with Referral Code: {{ ref_code }}
+            </p>
+            <p class="text-white text-md mt-2">
+              We'll notify you when we launch.
+            </p>
+          </div>
+          <div id="share" class="">
+            {% comment %} social icons {% endcomment %}
+            <div class="w-full flex justify-center mt-6">
+              <div
+                class="w-2/3 sm:w-1/3 lg:w-1/4 flex sm:justify-around justify-center gap-10 items-center"
+              >
+                <a
+                  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//kalakumbh.com&title=Kalakumbh&summary=&source="
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/linkedin-logo.png' %}"
+                    alt="Linkedin"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+                <a
+                  href="https://twitter.com/intent/tweet?text=Kalakumbh&url=https%3A//kalakumbh.com"
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/twitter.png' %}"
+                    alt="twitter"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/_kalakumbh_/"
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/instagram.png' %}"
+                    alt="instagram"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% elif warning == True %}
+    <div
+      id="warning"
+      class="w-full bg-black bg-opacity-50 h-screen fixed top-0 left-0 justify-center items-center flex"
+    >
+      <div class="">
+        <div class="m-auto bg-[#313131] rounded-3xl p-4 mx-4">
+          <div class="flex justify-end">
+            <a href="/">
+              <img
+                src="{% static 'website/icons/close.png' %}"
+                alt="close"
+                class="w-2 h-2 cursor-pointer"
+              />
+            </a>
+          </div>
+          <div class="text-center">
+            <img
+              src="{% static 'website/icons/check-mark.png' %}"
+              alt="check"
+              class="w-16 h-16 mx-auto"
+            />
+            <p class="text-white text-2xl font-semibold mt-4">
+              You're added to the usermodal!
+            </p>
+            <p class="text-white text-md mt-2">
+              We'll notify you when we launch.
+            </p>
+          </div>
+          <div id="share" class="">
+            {% comment %} social icons {% endcomment %}
+            <div class="w-full flex justify-center mt-6">
+              <div
+                class="w-2/3 sm:w-1/3 lg:w-1/4 flex sm:justify-around justify-center gap-10 items-center"
+              >
+                <a
+                  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//kalakumbh.com&title=Kalakumbh&summary=&source="
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/linkedin-logo.png' %}"
+                    alt="Linkedin"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+                <a
+                  href="https://twitter.com/intent/tweet?text=Kalakumbh&url=https%3A//kalakumbh.com"
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/twitter.png' %}"
+                    alt="twitter"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/_kalakumbh_/"
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/instagram.png' %}"
+                    alt="instagram"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% elif danger == True %}
+    <div
+      id="danger"
+      class="w-full bg-black bg-opacity-50 h-screen fixed top-0 left-0 justify-center items-center flex"
+    >
+      <div class="">
+        <div class="m-auto bg-[#313131] rounded-3xl p-4 mx-4">
+          <div class="flex justify-end">
+            <a href="javascript:history.back()">
+              <img
+                src="{% static 'website/icons/close.png' %}"
+                alt="close"
+                class="w-2 h-2 cursor-pointer"
+              />
+            </a>
+          </div>
+          <div class="text-center">
+            <img
+              src="{% static 'website/icons/check-mark.png' %}"
+              alt="check"
+              class="w-16 h-16 mx-auto"
+            />
+            <p class="text-white text-2xl font-semibold mt-4">
+              You're added to the wrongref!
+            </p>
+            <p class="text-white text-md mt-2">
+              We'll notify you when we launch.
+            </p>
+          </div>
+          <div id="share" class="">
+            {% comment %} social icons {% endcomment %}
+            <div class="w-full flex justify-center mt-6">
+              <div
+                class="w-2/3 sm:w-1/3 lg:w-1/4 flex sm:justify-around justify-center gap-10 items-center"
+              >
+                <a
+                  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//kalakumbh.com&title=Kalakumbh&summary=&source="
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/linkedin-logo.png' %}"
+                    alt="Linkedin"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+                <a
+                  href="https://twitter.com/intent/tweet?text=Kalakumbh&url=https%3A//kalakumbh.com"
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/twitter.png' %}"
+                    alt="twitter"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/_kalakumbh_/"
+                  target="_blank"
+                >
+                  <img
+                    src="{% static 'website/icons/instagram.png' %}"
+                    alt="instagram"
+                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
   </body>
 </html>
