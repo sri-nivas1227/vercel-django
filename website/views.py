@@ -34,13 +34,13 @@ def user(request):
         if phone == user_phone:
             ref_code = user.child("referral_code").get()
             # return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
-            return render(request, 'website/index.html', {'success': True, 'ref_code': ref_code})
+            return render(request, 'website/index.html', {'success': True, 'ref_code': ref_code, 'already': 'already', })
         ref = user.child('referral_code').get()
         if ref == user_ref_by or user_ref_by == "":
             flag = False
     if flag:
         # return HttpResponse("the referral code is invalid")
-        return render(request, 'website/index.html', {'danger': True})
+        return render(request, 'website/index.html', {'wrongCode': True})
     if user_ref_by == "":
         user_ref_by = 'null'
     print('referred by', request.POST['ref_by'])

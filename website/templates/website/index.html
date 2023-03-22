@@ -93,7 +93,7 @@
               required
             />
           </div>
-          <div id="phone" class="relative w-full my-4">
+          <div id="referral-code" class="relative w-full my-4">
             <div
               class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
             >
@@ -108,7 +108,8 @@
               name="ref_by"
               id="ref_by"
               placeholder="Referral Code..."
-              title="Please enter a valid 10 digit phone number"
+              pattern="[A-Z0-9]{6}"
+              title="Please enter a valid 6 character referral code"
               class="bg-[#313131] border text-[#e0dede] w-full text-md rounded-3xl pl-10 p-2.5 placeholder-[#858585]"
             />
           </div>
@@ -162,7 +163,6 @@
 
     {% if success %}
     <div
-      id="success-modal"
       class="w-full bg-black bg-opacity-50 h-screen fixed top-0 left-0 justify-center items-center flex"
     >
       <div class="">
@@ -183,7 +183,8 @@
               class="w-16 h-16 mx-auto"
             />
             <p class="text-white text-2xl font-semibold mt-4">
-              You're added to the waitlist with Referral Code: {{ ref_code }}
+              You're {{already}} added to the waitlist with Referral Code:
+              {{ref_code }}
             </p>
             <p class="text-white text-md mt-2">
               We'll notify you when we launch.
@@ -230,80 +231,8 @@
         </div>
       </div>
     </div>
-    {% comment %} {% elif warning == True %}
+    {% elif wrongCode == True %}
     <div
-      id="warning"
-      class="w-full bg-black bg-opacity-50 h-screen fixed top-0 left-0 justify-center items-center flex"
-    >
-      <div class="">
-        <div class="m-auto bg-[#313131] rounded-3xl p-4 mx-4">
-          <div class="flex justify-end">
-            <a href="/">
-              <img
-                src="{% static 'website/icons/close.png' %}"
-                alt="close"
-                class="w-2 h-2 cursor-pointer"
-              />
-            </a>
-          </div>
-          <div class="text-center">
-            <img
-              src="{% static 'website/icons/check-mark.png' %}"
-              alt="check"
-              class="w-16 h-16 mx-auto"
-            />
-            <p class="text-white text-2xl font-semibold mt-4">
-              You're added to the usermodal!
-            </p>
-            <p class="text-white text-md mt-2">
-              We'll notify you when we launch.
-            </p>
-          </div>
-          <div id="share" class="">
-            
-            <div class="w-full flex justify-center mt-6">
-              <div
-                class="w-2/3 sm:w-1/3 lg:w-1/4 flex sm:justify-around justify-center gap-10 items-center"
-              >
-                <a
-                  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//kalakumbh.com&title=Kalakumbh&summary=&source="
-                  target="_blank"
-                >
-                  <img
-                    src="{% static 'website/icons/linkedin-logo.png' %}"
-                    alt="Linkedin"
-                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
-                  />
-                </a>
-                <a
-                  href="https://twitter.com/intent/tweet?text=Kalakumbh&url=https%3A//kalakumbh.com"
-                  target="_blank"
-                >
-                  <img
-                    src="{% static 'website/icons/twitter.png' %}"
-                    alt="twitter"
-                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
-                  />
-                </a>
-                <a
-                  href="https://www.instagram.com/_kalakumbh_/"
-                  target="_blank"
-                >
-                  <img
-                    src="{% static 'website/icons/instagram.png' %}"
-                    alt="instagram"
-                    class="w-6 md:w-8 lg: sm:mx-2 h-6 md:h-8 lg:"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> {% endcomment %}
-    {% elif danger == True %}
-    <div
-      id="danger"
       class="w-full bg-black bg-opacity-50 h-screen fixed top-0 left-0 justify-center items-center flex"
     >
       <div class="">
@@ -324,11 +253,9 @@
               class="w-16 h-16 mx-auto"
             />
             <p class="text-white text-2xl font-semibold mt-4">
-              You're added to the wrongref!
+              The Referral Code provided is Invalid!
             </p>
-            <p class="text-white text-md mt-2">
-              We'll notify you when we launch.
-            </p>
+            <p class="text-white text-md mt-2">Please check and try again.</p>
           </div>
           <div id="share" class="">
             {% comment %} social icons {% endcomment %}
