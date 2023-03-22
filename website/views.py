@@ -34,7 +34,7 @@ def user(request):
         if phone == user_phone:
             ref_code = user.child("referral_code").get()
             # return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
-            return render(request, 'website/index.html', {'warning': True})
+            return render(request, 'website/index.html', {'success': True, 'ref_code': ref_code})
         ref = user.child('referral_code').get()
         if ref == user_ref_by or user_ref_by == "":
             flag = False
