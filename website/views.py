@@ -22,13 +22,20 @@ def user(request):
     user_ref = db.reference('users')
     user_name = request.POST['name'].title()
     user_phone = '+91' + request.POST['phone']
+    user_ref_by = request.POST['ref_by']
+    flag = True
     for user_id in user_ref.get():
         user = user_ref.child(user_id)
         phone = user.child("phone").get()
         if phone == user_phone:
             ref_code = user.child("referral_code").get()
             return HttpResponse("the user already exists. Pleae share your referral code with your friends: " + ref_code)
-    user_ref_by = request.POST['ref_by']
+            # return render(request, 'website/index.html', {'show': True})
+        ref = user.child('referral_code').get()
+        if ref == user_ref_by:
+            flag = False
+    if flag:
+        return HttpResponse("the referral code is invalid")
     if user_ref_by == "":
         user_ref_by = 'null'
     print('referred by', request.POST['ref_by'])
