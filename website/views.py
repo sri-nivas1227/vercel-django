@@ -15,7 +15,7 @@ default_app = firebase_admin.initialize_app(cred, {
 
 
 def index(request):
-    return render(request, 'website/index.html',)
+    return render(request, 'website/index.html', )
 
 
 def about(request):
